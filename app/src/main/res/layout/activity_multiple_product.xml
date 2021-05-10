@@ -1,0 +1,180 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".viewProduct.MultipleProduct">
+
+    <!-- viewpager to show images -->
+    <androidx.viewpager.widget.ViewPager
+        android:visibility="gone"
+        android:id="@+id/viewPagerMain"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"/>
+
+    <ScrollView
+        android:id="@+id/prdDetScroll"
+        android:padding="5dp"
+        android:layout_margin="5dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:adjustViewBounds="true">
+
+        <RelativeLayout
+            android:padding="5dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <com.daimajia.slider.library.SliderLayout
+                android:id="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="300dp"/>
+            <View
+                android:layout_below="@+id/slider"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:id="@+id/viewimage"
+                android:background="@color/LightGrey"
+                android:layout_marginBottom="10dp"
+                android:layout_marginTop="10dp"
+                />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:id="@+id/prdDesc"
+                android:text="Description of Product"
+                android:layout_below="@+id/viewimage"/>
+
+            <TextView
+                android:id="@+id/by"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prdDesc"
+                android:text="By"
+                android:textSize="15sp"
+                android:textColor="@color/Gray" />
+
+            <TextView
+                android:id="@+id/vendor"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/prdDesc"
+                android:layout_toRightOf="@+id/by"
+                android:layout_marginLeft="5dp"
+                android:text="Vendor Name"
+                android:textSize="15sp"
+                android:textColor="@color/Gray" />
+            <TextView
+                android:id="@+id/custpriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendor"
+                android:text="CP"
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+            <TextView
+                android:id="@+id/cp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendor"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/custpriceText"
+                android:text="300"
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+
+            <TextView
+                android:id="@+id/traderpriceText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/vendor"
+                android:text="TP"
+                android:layout_toLeftOf="@+id/tp"
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+
+            <TextView
+                android:layout_alignParentEnd="true"
+                android:id="@+id/tp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/by"
+                android:layout_marginLeft="5dp"
+                android:text="200"
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+
+            <TextView
+                android:id="@+id/catText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/custpriceText"
+                android:text="Category : "
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+            <TextView
+                android:id="@+id/catVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/custpriceText"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/catText"
+                android:text="Sarees"
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+
+            <TextView
+                android:id="@+id/qtyText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/catText"
+                android:text="Quantity Available : "
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+            <TextView
+                android:id="@+id/qtyVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/catText"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/qtyText"
+                android:text="50"
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+
+            <TextView
+                android:id="@+id/fabText"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/qtyText"
+                android:text="Fabric : "
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+            <TextView
+                android:id="@+id/fabVal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/qtyText"
+                android:layout_marginLeft="5dp"
+                android:layout_toRightOf="@+id/fabText"
+                android:text="Cotton"
+                android:textSize="16sp"
+                android:theme="@style/textTheme" />
+
+            <Button
+                android:visibility="gone"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addImages"
+                android:paddingTop="10dp"
+                android:layout_marginTop="10dp"
+                android:paddingBottom="10dp"
+                android:text="Add Images"
+                android:layout_below="@+id/fabVal"/>
+
+        </RelativeLayout>
+    </ScrollView>
+
+</RelativeLayout>

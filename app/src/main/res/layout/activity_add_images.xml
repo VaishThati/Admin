@@ -1,0 +1,188 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addproduct.AddImages">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:padding="10dp">
+
+        <Spinner
+            android:id="@+id/color_spinner"
+            android:layout_width="match_parent"
+            android:layout_height="45dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_marginBottom="10dp" />
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_below="@id/color_spinner"
+            android:id="@+id/sizeTI"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/loginViewsMargin">
+            <EditText
+                android:id="@+id/sizeEt"
+                android:background="@android:color/white"
+                style="@style/modifiedEditText"
+                android:hint="Enter the Size"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:layout_below="@id/sizeTI"
+            android:id="@+id/qtyTI"
+            android:layout_marginBottom="10dp"
+            style="@style/parent"
+            android:layout_marginTop="@dimen/loginViewsMargin">
+            <EditText
+                android:background="@android:color/white"
+                android:id="@+id/qtyEt"
+                style="@style/modifiedEditText"
+                android:hint="Quantity"
+                android:inputType="number"/>
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <Button
+            android:layout_below="@+id/qtyTI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/selImg"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_background"
+            android:text="Select Image"
+            />
+
+        <Button
+            android:layout_toRightOf="@+id/selImg"
+            android:layout_below="@id/qtyTI"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/addImg"
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:background="@drawable/button_background"
+            android:text="Add Image" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:id="@+id/select2"
+            android:layout_marginLeft="5dp"
+            android:paddingLeft="5dp"
+            android:text="Please Select 2 Images Only"
+            android:layout_below="@id/selImg"/>
+
+        <GridView
+            android:padding="5dp"
+            android:layout_margin="5dp"
+            android:layout_below="@id/select2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:id="@+id/gv"
+            android:numColumns="3"
+            android:layout_weight="1">
+        </GridView>
+
+    </RelativeLayout>
+</RelativeLayout>
+
+
+
+
+
+
+
+
+
+<!--<RelativeLayout-->
+<!--    xmlns:android="http://schemas.android.com/apk/res/android"-->
+<!--    xmlns:app="http://schemas.android.com/apk/res-auto"-->
+<!--    xmlns:tools="http://schemas.android.com/tools"-->
+<!--    android:layout_width="match_parent"-->
+<!--    android:layout_height="match_parent"-->
+<!--    tools:context=".addproduct.AddImages">-->
+
+<!--&lt;!&ndash;    <ScrollView&ndash;&gt;-->
+<!--&lt;!&ndash;        android:id="@+id/scroll"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_width="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_height="match_parent"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_alignParentTop="true"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_alignParentLeft="true"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:layout_centerInParent="true"&ndash;&gt;-->
+<!--&lt;!&ndash;        android:padding="10dp">&ndash;&gt;-->
+<!--        <RelativeLayout-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_margin="5dp"-->
+<!--            android:padding="10dp">-->
+
+<!--            <Spinner-->
+<!--                android:id="@+id/color_spinner"-->
+<!--                android:layout_width="match_parent"-->
+<!--                android:layout_height="45dp"-->
+<!--                android:layout_marginStart="10dp"-->
+<!--                android:layout_marginTop="10dp"-->
+<!--                android:layout_marginEnd="10dp"-->
+<!--                android:layout_marginBottom="10dp" />-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_below="@id/color_spinner"-->
+<!--                android:id="@+id/sizeTI"-->
+<!--                style="@style/parent"-->
+<!--                android:layout_marginTop="@dimen/loginViewsMargin">-->
+<!--                <EditText-->
+<!--                    android:id="@+id/sizeEt"-->
+<!--                    android:background="@android:color/white"-->
+<!--                    style="@style/modifiedEditText"-->
+<!--                    android:hint="Enter the Size"-->
+<!--                    android:inputType="number"/>-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <com.google.android.material.textfield.TextInputLayout-->
+<!--                android:layout_below="@id/sizeTI"-->
+<!--                android:id="@+id/qtyTI"-->
+<!--                android:layout_marginBottom="10dp"-->
+<!--                style="@style/parent"-->
+<!--                android:layout_marginTop="@dimen/loginViewsMargin">-->
+<!--                <EditText-->
+<!--                    android:background="@android:color/white"-->
+<!--                    android:id="@+id/qtyEt"-->
+<!--                    style="@style/modifiedEditText"-->
+<!--                    android:hint="Quantity"-->
+<!--                    android:inputType="number"/>-->
+<!--            </com.google.android.material.textfield.TextInputLayout>-->
+
+<!--            <Button-->
+<!--                android:layout_below="@+id/qtyTI"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/selImg"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:background="@drawable/button_background"-->
+<!--                android:text="Select Image"-->
+<!--                />-->
+
+<!--            <Button-->
+<!--                android:layout_toRightOf="@+id/selImg"-->
+<!--                android:layout_below="@id/qtyTI"-->
+<!--                android:layout_width="wrap_content"-->
+<!--                android:layout_height="wrap_content"-->
+<!--                android:id="@+id/addImg"-->
+<!--                android:padding="5dp"-->
+<!--                android:layout_margin="5dp"-->
+<!--                android:background="@drawable/button_background"-->
+<!--                android:text="Add Image"-->
+<!--                />-->
+
+<!--        </RelativeLayout>-->
+<!--&lt;!&ndash;    </ScrollView>&ndash;&gt;-->
+
+<!--</RelativeLayout>-->

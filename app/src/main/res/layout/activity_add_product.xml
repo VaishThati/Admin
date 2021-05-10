@@ -1,0 +1,213 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".addproduct.AddProduct">
+
+    <ScrollView
+        android:id="@+id/scroll"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_alignParentTop="true"
+        android:layout_alignParentLeft="true"
+        android:layout_centerInParent="true">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="4dp"
+                android:padding="5dp"
+                android:id="@+id/firstCard"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <RelativeLayout
+                    android:padding="5dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <Spinner
+                        android:id="@+id/category_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp"
+                        />
+                    <Spinner
+                        android:layout_below="@+id/category_spinner"
+                        android:id="@+id/stitch_spinner"
+                        android:layout_width="match_parent"
+                        android:layout_height="45dp"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="10dp"
+                        android:layout_marginEnd="10dp"
+                        android:layout_marginBottom="10dp" />
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_below="@id/stitch_spinner"
+                        android:id="@+id/textInputcsc"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:id="@+id/editTextcsc"
+                            android:background="@android:color/white"
+                            style="@style/modifiedEditText"
+                            android:hint="Customer Shipping Cost"
+                            android:maxLines="1"
+                            android:inputType="number"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_below="@id/textInputcsc"
+                        android:id="@+id/textInputvsc"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:background="@android:color/white"
+                            android:id="@+id/editTextvsc"
+                            style="@style/modifiedEditText"
+                            android:hint="Vendor Shipping Cost"
+                            android:maxLines="1"
+                            android:inputType="number"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_below="@+id/textInputvsc"
+                        android:id="@+id/textInputtmr"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:background="@android:color/white"
+                            android:id="@+id/editTexttmr"
+                            style="@style/modifiedEditText"
+                            android:hint="Trader Margin Rupees"
+                            android:maxLines="1"
+                            android:inputType="number"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_below="@+id/textInputtmr"
+                        android:id="@+id/textInputcmr"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:background="@android:color/white"
+                            android:id="@+id/editTextcmr"
+                            style="@style/modifiedEditText"
+                            android:hint="Customer Margin Rupees"
+                            android:maxLines="1"
+                            android:inputType="number"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <com.google.android.material.textfield.TextInputLayout
+                        android:layout_below="@+id/textInputcmr"
+                        android:id="@+id/textInputcp"
+                        style="@style/parent"
+                        android:layout_marginTop="@dimen/loginViewsMargin">
+                        <EditText
+                            android:background="@android:color/white"
+                            android:id="@+id/editTextcp"
+                            style="@style/modifiedEditText"
+                            android:hint="Cost Price"
+                            android:maxLines="1"
+                            android:inputType="number"/>
+                    </com.google.android.material.textfield.TextInputLayout>
+
+                    <Button
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:id="@+id/calculate"
+                        android:padding="5dp"
+                        android:layout_margin="5dp"
+                        android:background="@drawable/button_background"
+                        android:text="Calculate Selling Price"
+                        android:layout_below="@+id/textInputcp"/>
+
+                </RelativeLayout>
+            </androidx.cardview.widget.CardView>
+
+            <RelativeLayout
+                android:layout_below="@+id/firstCard"
+                android:id="@+id/spinnerLayout"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <Spinner
+                    android:id="@+id/fabric_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:prompt="@string/category" />
+                <Spinner
+                    android:layout_below="@+id/fabric_spinner"
+                    android:id="@+id/vendor_spinner"
+                    android:layout_width="match_parent"
+                    android:layout_height="45dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:prompt="@string/category" />
+
+                <!--                android:layout_toEndOf="@id/categoryText" -->
+            </RelativeLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_below="@+id/spinnerLayout"
+                android:id="@+id/textInputDesc"
+                style="@style/parent"
+                android:layout_marginTop="@dimen/loginViewsMargin">
+                <EditText
+                    android:background="@android:color/white"
+                    android:id="@+id/editTextDesc"
+                    style="@style/modifiedEditText"
+                    android:inputType="text"
+                    android:maxLines="10"
+                    android:hint="Description"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_below="@+id/textInputDesc"
+                android:id="@+id/traderPrTI"
+                style="@style/parent"
+                android:layout_marginTop="@dimen/loginViewsMargin">
+                <EditText
+                    android:id="@+id/etTraderPr"
+                    android:background="@android:color/white"
+                    style="@style/modifiedEditText"
+                    android:inputType="text"
+                    android:maxLines="10"
+                    android:hint="Trader Price"/>
+            </com.google.android.material.textfield.TextInputLayout>
+            <com.google.android.material.textfield.TextInputLayout
+                android:layout_below="@+id/traderPrTI"
+                android:id="@+id/custPrTI"
+                style="@style/parent"
+                android:layout_marginTop="@dimen/loginViewsMargin">
+                <EditText
+                    android:id="@+id/etCustPr"
+                    android:background="@android:color/white"
+                    style="@style/modifiedEditText"
+                    android:inputType="text"
+                    android:maxLines="10"
+                    android:hint="Customer Price"/>
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:id="@+id/addPrBtn"
+                android:padding="5dp"
+                android:layout_margin="5dp"
+                android:background="@drawable/button_background"
+                android:text="Add Product"
+                android:layout_below="@+id/custPrTI"/>
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

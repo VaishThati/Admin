@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:orientation="vertical"
+    android:padding="5dp"
+    android:layout_height="wrap_content"
+    android:id="@+id/uvscroll">
+
+    <EditText
+        android:drawableStart="@drawable/ic_baseline_person_24"
+        android:drawablePadding="16dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Name"
+        android:layout_margin="5dp"
+        android:id="@+id/nameu"
+        android:drawableLeft="@drawable/ic_email" />
+    <EditText
+        android:drawableStart="@drawable/ic_email"
+        android:drawablePadding="16dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Email id"
+        android:layout_below="@+id/nameu"
+        android:layout_margin="5dp"
+        android:id="@+id/emailu"
+        android:drawableLeft="@drawable/ic_email" />
+
+    <EditText
+        android:visibility="gone"
+        android:drawableStart="@drawable/ic_phone"
+        android:drawablePadding="16dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Mobile Number"
+        android:layout_margin="5dp"
+        android:id="@+id/mobileu"
+        android:drawableLeft="@drawable/ic_phone"
+        android:layout_below="@+id/emailu"/>
+
+    <EditText
+        android:drawableStart="@drawable/ic_store"
+        android:drawablePadding="16dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Store"
+        android:layout_margin="5dp"
+        android:id="@+id/storeu"
+        android:drawableLeft="@drawable/ic_store"
+        android:layout_below="@+id/mobileu"/>
+
+    <EditText
+        android:drawableStart="@drawable/ic_website"
+        android:drawablePadding="16dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Website"
+        android:layout_margin="5dp"
+        android:id="@+id/websiteu"
+        android:drawableLeft="@drawable/ic_website"
+        android:layout_below="@+id/storeu"/>
+
+    <EditText
+        android:drawableStart="@drawable/ic_gst"
+        android:drawablePadding="16dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="GST"
+        android:layout_margin="5dp"
+        android:id="@+id/gstinu"
+        android:drawableLeft="@drawable/ic_gst"
+        android:layout_below="@+id/websiteu"/>
+
+    <EditText
+        android:drawableStart="@drawable/ic_baseline_tag_24"
+        android:drawablePadding="16dp"
+        android:padding="16dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="Supplier Code"
+        android:layout_margin="5dp"
+        android:id="@+id/suppliercodeu"
+        android:drawableLeft="@drawable/ic_gst"
+        android:layout_below="@+id/gstinu"/>
+
+    <Button
+        android:id="@+id/update"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/suppliercodeu"
+        android:layout_centerHorizontal="true"
+        android:layout_margin="5dp"
+        android:layout_marginTop="20dp"
+        android:padding="5dp"
+        android:text="Update" />
+
+</RelativeLayout>

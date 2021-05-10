@@ -1,0 +1,135 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:fillViewport="true"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <RelativeLayout
+        android:layout_margin="10dp"
+        android:padding="10dp"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Register">
+
+<!--        android:background="@drawable/round_border"-->
+
+        <EditText
+            android:drawableStart="@drawable/ic_baseline_person_24"
+            android:drawablePadding="16dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Name"
+            android:layout_margin="5dp"
+            android:id="@+id/name"
+            android:drawableLeft="@drawable/ic_email" />
+        <EditText
+            android:drawableStart="@drawable/ic_email"
+            android:drawablePadding="16dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Email id"
+            android:layout_below="@+id/name"
+            android:layout_margin="5dp"
+            android:id="@+id/email"
+            android:drawableLeft="@drawable/ic_email" />
+
+        <EditText
+            android:inputType="phone"
+            android:drawableStart="@drawable/ic_phone"
+            android:drawablePadding="16dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Mobile Number"
+            android:layout_margin="5dp"
+            android:id="@+id/mobile"
+            android:drawableLeft="@drawable/ic_phone"
+            android:layout_below="@+id/email"/>
+
+        <EditText
+            android:drawableStart="@drawable/ic_store"
+            android:drawablePadding="16dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Store"
+            android:layout_margin="5dp"
+            android:id="@+id/store"
+            android:drawableLeft="@drawable/ic_store"
+            android:layout_below="@+id/mobile"/>
+
+        <EditText
+            android:drawableStart="@drawable/ic_website"
+            android:drawablePadding="16dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Website"
+            android:layout_margin="5dp"
+            android:id="@+id/website"
+            android:drawableLeft="@drawable/ic_website"
+            android:layout_below="@+id/store"/>
+
+        <EditText
+            android:drawableStart="@drawable/ic_gst"
+            android:drawablePadding="16dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="GST"
+            android:layout_margin="5dp"
+            android:id="@+id/gstin"
+            android:drawableLeft="@drawable/ic_gst"
+            android:layout_below="@+id/website"/>
+
+        <EditText
+            android:drawableStart="@drawable/ic_baseline_tag_24"
+            android:drawablePadding="16dp"
+            android:padding="16dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Supplier Code"
+            android:layout_margin="5dp"
+            android:id="@+id/suppliercode"
+            android:drawableLeft="@drawable/ic_gst"
+            android:layout_below="@+id/gstin"/>
+
+            <LinearLayout
+                android:layout_below="@+id/suppliercode"
+                android:layout_width="wrap_content"
+                android:layout_centerHorizontal="true"
+                android:layout_height="wrap_content">
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_background"
+                    android:id="@+id/buttonRegister"
+                    android:textColor="@color/white"
+                    android:text="Register"
+                    android:layout_margin="10dp"
+                    android:padding="5dp"
+                     />
+        <!--        android:backgroundTint="@color/black"-->
+        <!--        app:backgroundTint="@color/black"-->
+
+                <Button
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:background="@drawable/button_background"
+                    android:id="@+id/buttonViewVendor"
+                    android:text="View Vendor"
+                    android:layout_margin="10dp"
+                    android:textColor="@color/white"
+                    android:padding="5dp"
+                    />
+        <!--        android:backgroundTint="@color/black"-->
+        <!--        app:backgroundTint="@color/black"-->
+            </LinearLayout>
+
+    </RelativeLayout>
+</ScrollView>

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.example.adminapp">
+    <!-- <uses-permission android:name="android.permission.INTERNET" /> -->
+    <!-- <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" /> -->
+    <!-- <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" /> -->
+    <!-- <uses-permission android:name="android.permission.FOREGROUND_SERVICE" /> -->
+    <!-- add these permissions -->
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+
+    <application
+        android:allowBackup="true"
+        android:icon="@mipmap/ic_launcher"
+        android:label="@string/app_name"
+        android:roundIcon="@mipmap/ic_launcher_round"
+        android:supportsRtl="true"
+        android:requestLegacyExternalStorage="true"
+        android:theme="@style/Theme.AdminApp"
+        android:usesCleartextTraffic="true">
+        <activity android:name=".viewProduct.ListViewProduct"></activity>
+        <activity android:name=".vendor.UpdateVendor" />
+        <activity android:name=".viewProduct.MultipleProduct" />
+        <activity android:name=".filsort.FilterActivity" />
+        <activity android:name=".viewProduct.ProductDetail" />
+        <activity
+            android:name=".addproduct.AddImages"
+            android:label="Add Images"
+            android:noHistory="true" />
+        <activity
+            android:name=".vendor.ViewVendor"
+            android:label="Vendor" />
+        <activity
+            android:name=".viewProduct.ViewProduct"
+            android:label="Products" />
+        <activity
+            android:name=".vendor.AddVendor"
+            android:label="Add Vendor" />
+        <activity android:name=".user.RegisterActivity" />
+        <activity android:name=".user.LoginActivity" />
+        <activity
+            android:name=".addproduct.AddProduct"
+            android:label="Add Product" />
+        <activity android:name=".MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".multipleaddproduct.NewImageGrid" />
+    </application>
+
+</manifest>
