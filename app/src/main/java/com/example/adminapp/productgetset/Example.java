@@ -20,20 +20,44 @@ public class Example {
         @Override
         public int compare(Example o1, Example o2) {
 //            return o1.getName().compareTo(o2.getName());
-            return o1.getVendor().vendorName.compareTo(o2.getVendor().vendorName);
+//            return o1.getVendor().vendorName.compareTo(o2.getVendor().vendorName);
+            return o1.getDescription().compareTo(o2.getDescription());
         }
     };
+    /*
     private static int sc;
     public static Comparator<Example> sizeComparator = new Comparator<Example>() {
         @Override
         public int compare(Example o1, Example o2) {
 //            return o1.getSize() -
-            for (int i=0; i<o1.getPrdDesignRes().size(); i++){
-                sc = o1.getPrdDesignRes().get(i).getProductSize().toString().compareTo(o2.getPrdDesignRes().get(i).getProductSize().toString());
+
+//            for (int i=0; i<o1.getPrdDesignRes().size(); i++){
+////                sc = o1.getPrdDesignRes().get(i).getProductSize().toString().compareTo(o2.getPrdDesignRes().get(i).getProductSize().toString());
+//                sc = o1.getPrdDesignRes().get(i).getProductSize().getValue().compareTo(o2.getPrdDesignRes().get(i).getProductSize().getValue());
+//            }
+//            return sc;
+            for (int i=0;i<o1.getPrdDesignRes().size();i++){
+                sc = Integer.parseInt(o1.getPrdDesignRes().get(i).getProductSize().getValue()) - Integer.parseInt(o2.getPrdDesignRes().get(i).getProductSize().getValue());
+            }
+//            for (int i=0;i<o1.getPrdDesignRes().size();i++){
+//                sc = o1.getPrdDesignRes().get(i).getProductSize().getValue().compareTo(o2.getPrdDesignRes().get(i).getProductSize().getValue());
+//            }
+            return sc;
+
+        }
+    };
+    */
+    private static int sc;
+    public static Comparator<Example> sizeComparator = new Comparator<Example>() {
+        @Override
+        public int compare(Example o1, Example o2) {
+            for (int i=0;i<o1.prdDesignRes.size();i++){
+                sc = Integer.parseInt(o1.prdDesignRes.get(i).getProductSize().getValue()) - Integer.parseInt(o2.getPrdDesignRes().get(i).getProductSize().getValue());
             }
             return sc;
         }
     };
+
     public static Comparator<Example> priceComparator = new Comparator<Example>() {
         @Override
         public int compare(Example o1, Example o2) {

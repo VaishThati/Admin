@@ -19,7 +19,7 @@ public class PrdDesignRe {
     public ProductColor productColor;
     @SerializedName("productSize")
     @Expose
-    private Object productSize;
+    private ProductSize productSize;
     @SerializedName("image_Urls")
     @Expose
     private List<ImageUrl> imageUrls = null;
@@ -43,11 +43,11 @@ public class PrdDesignRe {
         this.productColor = productColor;
     }
 
-    public Object getProductSize() {
+    public ProductSize getProductSize() {
         return productSize;
     }
 
-    public void setProductSize(Object productSize) {
+    public void setProductSize(ProductSize productSize) {
         this.productSize = productSize;
     }
 

@@ -86,19 +86,17 @@ public class NewImageGrid extends AppCompatActivity {
     String imageaddurl = "http://103.150.187.59:54691/api/Product/AddProductDesignWithImages";
     String getExistingdataUrl = "http://103.150.187.59:54691/api/Product/existingData";
     ArrayList<Uri> mArrayUri;
-    Bitmap bitmap;
     Uri mImageUri;
-    byte[] byteArray;
-    Spinner catSpinner;
+    Spinner catSpinner, sizeSpinner;
     EditText size, quantity;
-    int printsp, id;
-    ArrayList<String> ConfessName;
-    ArrayList<Integer> ConfessIDArray;
-    public int confessintId;
-    String Category, category_Value;
+    int printsp, id, sizeId;
+    ArrayList<String> ConfessName, SizeName;
+    ArrayList<Integer> ConfessIDArray, SizeIDArray;
+    public int confessintId, sizeIntID;
+    String Category, category_Value, Size, size_Value;
     List<Integer> list2 = new ArrayList<Integer>();
+    List<Integer> list3 = new ArrayList<Integer>();
 
-    ArrayList<String> files = new ArrayList<>();
     private ProgressDialog pDialog;
     List<String> str_list = new ArrayList<String>();
     JSONObject obj=new JSONObject();
@@ -128,6 +126,8 @@ public class NewImageGrid extends AppCompatActivity {
 
         ConfessName = new ArrayList<String>();
         ConfessIDArray = new ArrayList<Integer>();
+        SizeName = new ArrayList<String>();
+        SizeIDArray = new ArrayList<Integer>();
         getColorList(getExistingdataUrl);
 
         btn.setOnClickListener(new View.OnClickListener() {
@@ -154,11 +154,6 @@ public class NewImageGrid extends AppCompatActivity {
                     intent.setAction(Intent.ACTION_GET_CONTENT);
                     startActivityForResult(Intent.createChooser(intent,"Select Picture"), 1);
                 }
-
-
-//                Intent openGalleryIntent = new Intent(Intent.ACTION_PICK);
-//                openGalleryIntent.setType("image/*");
-//                startActivityForResult(openGalleryIntent, REQUEST_GALLERY_CODE);
             }
         });
         addImg = findViewById(R.id.addImg);
@@ -167,7 +162,7 @@ public class NewImageGrid extends AppCompatActivity {
             public void onClick(View v) {
                 // This is Working
                 try {
-                    obj.put("SizeId", Integer.parseInt(size.getText().toString()));
+                    obj.put("SizeId", sizeIntID);
                     obj.put("Qty", Integer.parseInt(quantity.getText().toString()));
                     Log.e("sizeidandqty", String.valueOf(obj));
                 } catch (JSONException e) {
@@ -176,8 +171,6 @@ public class NewImageGrid extends AppCompatActivity {
                 str_list.add(String.valueOf(obj));
                 Log.e("str_list", String.valueOf(str_list));
                 uploadBitmap();
-
-
                 //uploadMultiFile();
             }
         });
@@ -213,7 +206,21 @@ public class NewImageGrid extends AppCompatActivity {
             }
         });
 
-        size = findViewById(R.id.sizeEt);
+        sizeSpinner = findViewById(R.id.size_spinner);
+        sizeSpinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            @Override
+            public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
+                int x = sizeSpinner.getSelectedItemPosition();
+                sizeIntID = list3.get(x);
+                Log.e("sizeIntID", String.valueOf(sizeIntID));
+            }
+
+            @Override
+            public void onNothingSelected(AdapterView<?> parent) {
+
+            }
+        });
+
         quantity = findViewById(R.id.qtyEt);
     }
 
@@ -373,16 +380,8 @@ public class NewImageGrid extends AppCompatActivity {
     private void uploadMultiFile() {
         progressDialog.show();
 
-//        ArrayList<String> filePaths = new ArrayList<>();
-//        filePaths.add("storage/emulated/0/DCIM/Camera/IMG_20170802_111432.jpg");
-//        filePaths.add("storage/emulated/0/Pictures/WeLoveChat/587c4178e4b0060e66732576_294204376.jpg");
-//        filePaths.add("storage/emulated/0/Pictures/WeLoveChat/594a2ea4e4b0d6df9153028d_265511791.jpg");
-
         MultipartBody.Builder builder = new MultipartBody.Builder();
         builder.setType(MultipartBody.FORM);
-
-//        builder.addFormDataPart("user_name", "Robert");
-//        builder.addFormDataPart("email", "mobile.apps.pro.vn@gmail.com");
         builder.addFormDataPart("ProductId", String.valueOf(printsp));
         builder.addFormDataPart("colorID", "1");
 //                headers.put("ProductSizeAndQuantityJson", "[{\"SizeId\":4,\"Qty\":33333}]");
@@ -414,190 +413,6 @@ public class NewImageGrid extends AppCompatActivity {
         });
 
     }
-
-
-
-
-
-
-    /* this is tempvolleymr which is not working duh
-    private void uploadBitmap() {
-        TempVolleyMR volleyMultipartRequest = new TempVolleyMR(Request.Method.POST, imageaddurl,
-                new Response.Listener<NetworkResponse>() {
-                    @Override
-                    public void onResponse(NetworkResponse response) {
-                        // a(response);
-                        Log.e("resp", String.valueOf(response));
-                        Log.e("reposneupload", response.data.toString());
-                        Toast.makeText(NewImageGrid.this, "Image Added Successfully", Toast.LENGTH_SHORT).show();
-                        Intent intent = new Intent(NewImageGrid.this, ViewProduct.class);
-                        startActivity(intent);
-                        finish();
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_LONG).show();
-                        Log.e("GotError",""+error.getMessage());
-                        //parseVolleyError(error);
-                    }
-                })
-        {
-            @Override
-            protected Map<String, String> getParams() {
-                Map<String, String> headers = new HashMap<>();
-                headers.put("ProductId", String.valueOf(printsp));
-                headers.put("colorID", "1");
-                headers.put("ProductSizeAndQuantityJson", "[{\"SizeId\":4,\"Qty\":33333}]");
-                headers.put("ImagesWithDesign", String.valueOf(mArrayUri));
-                //headers.put("ImagesWithDesign", String.valueOf(byteArray));
-                Log.e("hed1", String.valueOf(headers));
-                headers.put("Content-Type", "application/json; charset=utf-8");
-
-                return headers;
-            }
-
-            @Override
-            protected Map<String, ArrayList<DataPart>> getByteData() {
-                Map<String, ArrayList<DataPart>> headers = new HashMap<>();
-                long imagename = System.currentTimeMillis();
-                Bitmap bitmap = null;
-                Bitmap bitmap2 = null;
-                ArrayList<DataPart> abc = new ArrayList<>();
-
-                //headers.put("ImagesWithDesign", abc);
-                for (int i=0;i<mArrayUri.size();i++){
-                    try {
-                        bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), mArrayUri.get(0));
-                        bitmap2 = MediaStore.Images.Media.getBitmap(getContentResolver(), mArrayUri.get(1));
-                        abc.add(new TempVolleyMR.DataPart(imagename + ".png", getFileDataFromDrawable(bitmap)));
-                        abc.add(new TempVolleyMR.DataPart(imagename + ".png", getFileDataFromDrawable(bitmap2)));
-                        headers.put("ImagesWithDesign", abc);
-                        Log.e("adhsxnbs", String.valueOf(headers));
-                        return headers;
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-                Log.e("headersxyz", String.valueOf(headers));
-                return headers;
-            }
-            @Override
-            public Map<String, String> getHeaders() throws AuthFailureError {
-                Map<String,String> params = new HashMap<String, String>();
-                params.put("Content-Type", "application/x-www-form-urlencoded");
-                return params;
-            }
-
-            @Override
-            public String getBodyContentType(){
-                return "application/x-www-form-urlencoded";
-            }
-
-        };
-        //adding the request to volley
-        Volley.newRequestQueue(this).add(volleyMultipartRequest);
-    }
-    */
-
-
-
-
-    /*
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
-        if(requestCode==1 && null != data){
-            if(data.getClipData() != null) {
-                int count = data.getClipData().getItemCount(); //evaluate the count before the for loop --- otherwise, the count is evaluated every loop.
-                for(int i = 0; i < count; i++){
-                    Uri imageUri = data.getClipData().getItemAt(i).getUri();
-                    getImageFilePath(imageUri);
-                }
-            }
-            if(files.size()>0){
-                uploadFiles();
-                uploadBitmap();
-            }
-        }
-    }
-
-    public void getImageFilePath(Uri uri) {
-
-        File file = new File(uri.getPath());
-        String[] filePath = file.getPath().split(":");
-        String image_id = filePath[filePath.length - 1];
-        Cursor cursor = getContentResolver().query(android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI, null, MediaStore.Images.Media._ID + " = ? ", new String[]{image_id}, null);
-        if (cursor!=null) {
-            cursor.moveToFirst();
-            String imagePath = cursor.getString(cursor.getColumnIndex(MediaStore.Images.Media.DATA));
-            files.add(imagePath);
-            cursor.close();
-        }
-    }
-
-    public void uploadFiles(){
-        File[] filesToUpload = new File[files.size()];
-        for(int i=0; i< files.size(); i++){
-            filesToUpload[i] = new File(files.get(i));
-        }
-        showProgress("Uploading media ...");
-        FileUploader fileUploader = new FileUploader();
-        fileUploader.uploadFiles("/", "file", filesToUpload, new FileUploader.FileUploaderCallback() {
-            @Override
-            public void onError() {
-                hideProgress();
-            }
-
-            @Override
-            public void onFinish(String[] responses) {
-                hideProgress();
-                for(int i=0; i< responses.length; i++){
-                    String str = responses[i];
-                    Log.e("RESPONSE "+i, responses[i]);
-                }
-            }
-
-            @Override
-            public void onProgressUpdate(int currentpercent, int totalpercent, int filenumber) {
-                updateProgress(totalpercent,"Uploading file "+filenumber,"");
-                Log.e("Progress Status", currentpercent+" "+totalpercent+" "+filenumber);
-            }
-        });
-    }
-
-    public void updateProgress(int val, String title, String msg){
-        pDialog.setTitle(title);
-        pDialog.setMessage(msg);
-        pDialog.setProgress(val);
-    }
-
-    public void showProgress(String str){
-        try{
-            pDialog.setCancelable(false);
-            pDialog.setTitle("Please wait");
-            pDialog.setProgressStyle(ProgressDialog.STYLE_HORIZONTAL);
-            pDialog.setMax(100); // Progress Dialog Max Value
-            pDialog.setMessage(str);
-            if (pDialog.isShowing())
-                pDialog.dismiss();
-            pDialog.show();
-        }catch (Exception e){
-
-        }
-    }
-
-    public void hideProgress(){
-        try{
-            if (pDialog.isShowing())
-                pDialog.dismiss();
-        }catch (Exception e){
-
-        }
-
-    }
-    */
 
     // It is working bas yuhi
     private void uploadBitmap() {
@@ -717,19 +532,6 @@ public class NewImageGrid extends AppCompatActivity {
         return byteArrayOutputStream.toByteArray();
     }
 
-    /*
-    public static Bitmap StringToBitMap(String encodedString){
-        try{
-            byte [] encodeByte= Base64.decode(encodedString,Base64.DEFAULT);
-            Bitmap bitmap= BitmapFactory.decodeByteArray(encodeByte, 0, encodeByte.length);
-            return bitmap;
-        }catch(Exception e){
-            e.getMessage();
-            return null;
-        }
-    }
-    */
-
     private void getColorList(String confessionList_url){
         RequestQueue requestQueue = Volley.newRequestQueue(getApplicationContext());
         StringRequest stringRequest = new StringRequest(confessionList_url, new Response.Listener<String>() {
@@ -740,7 +542,8 @@ public class NewImageGrid extends AppCompatActivity {
                     JSONObject jsonObject = new JSONObject(responseOrg);
                     Category = jsonObject.getString("productColor");
                     Log.e("productColor", Category);
-
+                    Size = jsonObject.getString("productSizes");
+                    Log.e("productSizes", Size);
                     JSONArray jsonArray = new JSONArray(Category);
                     Log.e("jsonaarya", String.valueOf(jsonArray));
                     for (int i = 0;i<jsonArray.length();i++){
@@ -753,8 +556,17 @@ public class NewImageGrid extends AppCompatActivity {
                         ConfessIDArray.add(id);
                         list2.addAll(Collections.singleton(abc.getInt("productColor_ID")));
                     }
-
+                    JSONArray jsonArray1 = new JSONArray(Size);
+                    for (int i=0;i<jsonArray1.length();i++){
+                        JSONObject xyz = jsonArray1.getJSONObject(i);
+                        size_Value = xyz.getString("value");
+                        sizeId = xyz.getInt("id");
+                        SizeName.add(size_Value);
+                        SizeIDArray.add(sizeId);
+                        list3.addAll(Collections.singleton(xyz.getInt("id")));
+                    }
                     catSpinner.setAdapter(new ArrayAdapter<String>(NewImageGrid.this, android.R.layout.simple_spinner_dropdown_item, ConfessName));
+                    sizeSpinner.setAdapter(new ArrayAdapter<String>(NewImageGrid.this, android.R.layout.simple_spinner_dropdown_item, SizeName));
                 }
                 catch (JSONException e){
                     e.printStackTrace();

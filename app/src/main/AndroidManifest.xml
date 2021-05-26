@@ -32,8 +32,11 @@
             android:name=".vendor.ViewVendor"
             android:label="Vendor" />
         <activity
+            android:parentActivityName=".MainActivity"
             android:name=".viewProduct.ViewProduct"
             android:label="Products" />
+<!--            -->
+
         <activity
             android:name=".vendor.AddVendor"
             android:label="Add Vendor" />
@@ -50,6 +53,10 @@
             </intent-filter>
         </activity>
         <activity android:name=".multipleaddproduct.NewImageGrid" />
+
+        <meta-data
+            android:name="preloaded_fonts"
+            android:resource="@array/preloaded_fonts" />
     </application>
 
 </manifest>

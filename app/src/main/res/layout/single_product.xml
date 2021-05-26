@@ -23,16 +23,17 @@
         android:layout_height="150dp"
         android:scaleType="fitXY"
         android:src="@mipmap/ic_launcher" />
-    <TextView
-        android:id="@+id/name"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_below="@+id/image"
-        android:textStyle="bold"
-        android:text="ABCD"
-        android:theme="@style/textTheme"
-        android:textSize="20sp"
-        />
+
+            <TextView
+                android:id="@+id/name"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/image"
+                android:fontFamily="@font/roboto"
+                android:text="ABCD"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:theme="@style/textTheme" />
 <!--    android:layout_alignParentBottom="true"-->
 <!--    android:layout_centerHorizontal="true"-->
 
@@ -42,7 +43,8 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/name"
         android:text="By"
-        android:textSize="15sp"
+        android:fontFamily="@font/roboto"
+        android:textSize="14sp"
         android:textColor="@color/Gray" />
 
     <TextView
@@ -53,7 +55,9 @@
         android:layout_toRightOf="@+id/by"
         android:layout_marginLeft="5dp"
         android:text="Vendor Name"
-        android:textSize="15sp"
+        android:fontFamily="@font/roboto"
+
+        android:textSize="14sp"
         android:textColor="@color/Gray" />
     <TextView
         android:theme="@style/textTheme"
@@ -62,40 +66,42 @@
         android:layout_height="wrap_content"
         android:layout_below="@+id/by"
         android:text="CP"
-        android:textSize="16sp"
+        android:fontFamily="@font/roboto"
+        android:textSize="15sp"
         />
     <TextView
         android:id="@+id/custprice"
         android:layout_width="wrap_content"
+        android:fontFamily="@font/roboto"
         android:layout_height="wrap_content"
         android:layout_below="@+id/by"
         android:layout_marginLeft="5dp"
         android:layout_toRightOf="@+id/custpriceText"
         android:text="300"
-        android:textSize="16sp"
-        android:theme="@style/textTheme"
-        />
+        android:textSize="15sp"
+        android:theme="@style/textTheme" />
 
     <TextView
         android:id="@+id/traderpriceText"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:fontFamily="@font/roboto"
         android:layout_below="@+id/by"
         android:text="TP"
         android:layout_toLeftOf="@+id/traderprice"
-        android:textSize="16sp"
-        android:theme="@style/textTheme"
-        />
+        android:textSize="15sp"
+        android:theme="@style/textTheme" />
 
     <TextView
         android:layout_alignParentEnd="true"
+        android:fontFamily="@font/roboto"
         android:id="@+id/traderprice"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@+id/by"
         android:layout_marginLeft="5dp"
         android:text="200"
-        android:textSize="16sp"
+        android:textSize="15sp"
         android:theme="@style/textTheme"
         />
         </RelativeLayout>

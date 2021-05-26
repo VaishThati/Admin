@@ -7,6 +7,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.animation.Animator;
 import android.animation.AnimatorListenerAdapter;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -47,16 +48,22 @@ public class FilterActivity extends AppCompatActivity {
     RecyclerView filterValuesRV;
     FilterAdapter filterAdapter;
     String getImagesURL = "http://103.150.187.59:54691/api/Product/getAllProducts/";
-    List<String> colorsList = new ArrayList<String>();
-    List<String> sizeList = new ArrayList<String>();
-    List<String> priceList = new ArrayList<String>();
+    List<String> colorsList;
+    List<String> sizeList;
+    List<String> priceList;
+
+    SharedPreferences sharedPreferencesEditor;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_filter);
-        getImage();
+        colorsList = new ArrayList<String>();
+        sizeList = new ArrayList<String>();
+        priceList = new ArrayList<String>();
+
         initControls();
+
     }
 
     private void initControls() {
@@ -64,6 +71,7 @@ public class FilterActivity extends AppCompatActivity {
         filterValuesRV = findViewById(R.id.filterValuesRV);
         filterRV.setLayoutManager(new LinearLayoutManager(this));
         filterValuesRV.setLayoutManager(new LinearLayoutManager(this));
+        getImage();
 
         List<String> colors = Arrays.asList(new String[]{"Red", "Green", "Blue", "White"});
         if (!Preferences.filters.containsKey(Filter.INDEX_COLOR)) {
@@ -85,9 +93,10 @@ public class FilterActivity extends AppCompatActivity {
         clearB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Preferences.filters.get(Filter.INDEX_COLOR).setSelected(new ArrayList());
-                Preferences.filters.get(Filter.INDEX_SIZE).setSelected(new ArrayList());
-                Preferences.filters.get(Filter.INDEX_PRICE).setSelected(new ArrayList());
+//                Preferences.filters.get(Filter.INDEX_COLOR).setSelected(new ArrayList());
+//                Preferences.filters.get(Filter.INDEX_SIZE).setSelected(new ArrayList());
+//                Preferences.filters.get(Filter.INDEX_PRICE).setSelected(new ArrayList());
+                Preferences.filters.clear();
                 startActivity(new Intent(FilterActivity.this, ViewProduct.class));
             }
         });
@@ -96,10 +105,12 @@ public class FilterActivity extends AppCompatActivity {
         applyB.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-//                Bundle b=new Bundle();
-                startActivity(new Intent(FilterActivity.this, ViewProduct.class));
-//                b.putStringArrayList("colorsList", (ArrayList<String>) colorsList);
-//                intent.putExtras(b);
+                //Bundle b=new Bundle();
+                Intent intent = new Intent(FilterActivity.this, ViewProduct.class);
+                //b.putStringArrayList("colorsList", (ArrayList<String>) colorsList);
+                //intent.putExtras(b);
+                startActivity(intent);
+
             }
         });
     }
@@ -128,12 +139,18 @@ public class FilterActivity extends AppCompatActivity {
                             JSONObject pcj = new JSONObject(pc);
                             String pcv = pcj.getString("productColorValue");
                             Log.e("pcv", pcv);
-                            colorsList.add(pcv);
+                            if (!colorsList.contains(pcv)) {
+                                colorsList.add(pcv);
+                            }
+//                            colorsList.add(pcv);
                             String ps = j.getString("productSize");
                             Log.e("ps", ps);
                             JSONObject psj = new JSONObject(ps);
                             String psv = psj.getString("value");
-                            sizeList.add(psv);
+                            if (!sizeList.contains(psv)) {
+                                sizeList.add(psv);
+                            }
+                            //sizeList.add(psv);
                             Log.e("psv", psv);
                         }
                         Log.e("colorsList", colorsList.toString());

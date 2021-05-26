@@ -13,71 +13,80 @@
         android:layout_margin="5dp"
         android:padding="10dp">
 
-        <Spinner
-            android:id="@+id/color_spinner"
+        <LinearLayout
+            android:id="@+id/linearspin"
             android:layout_width="match_parent"
-            android:layout_height="45dp"
-            android:layout_marginStart="10dp"
-            android:layout_marginTop="10dp"
-            android:layout_marginEnd="10dp"
-            android:layout_marginBottom="10dp" />
+            android:layout_height="wrap_content">
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@id/color_spinner"
-            android:id="@+id/sizeTI"
-            style="@style/parent"
-            android:layout_marginTop="@dimen/loginViewsMargin">
-            <EditText
-                android:id="@+id/sizeEt"
-                android:background="@android:color/white"
-                style="@style/modifiedEditText"
-                android:hint="Enter the Size"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+            <Spinner
+                android:elevation="2dp"
+                android:tag="Category"
+                android:layout_weight="1"
+                android:id="@+id/color_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="10dp" />
+            <Spinner
+                android:layout_weight="1"
+                android:id="@+id/size_spinner"
+                android:layout_width="match_parent"
+                android:layout_height="45dp"
+                android:layout_margin="10dp" />
+        </LinearLayout>
 
-        <com.google.android.material.textfield.TextInputLayout
-            android:layout_below="@id/sizeTI"
-            android:id="@+id/qtyTI"
-            android:layout_marginBottom="10dp"
-            style="@style/parent"
-            android:layout_marginTop="@dimen/loginViewsMargin">
-            <EditText
-                android:background="@android:color/white"
-                android:id="@+id/qtyEt"
-                style="@style/modifiedEditText"
-                android:hint="Quantity"
-                android:inputType="number"/>
-        </com.google.android.material.textfield.TextInputLayout>
+        <EditText
+            android:fontFamily="@font/roboto"
+            android:drawableStart="@drawable/ic_quantity_limits_24"
+            android:layout_below="@id/linearspin"
+            android:layout_margin="5dp"
+            android:background="@drawable/text_bg"
+            android:drawablePadding="10dp"
+            android:padding="12dp"
+            android:id="@+id/qtyEt"
+            style="@style/modifiedEditText"
+            android:hint="Quantity"
+            android:inputType="number"/>
 
+        <LinearLayout
+            android:layout_margin="5dp"
+            android:layout_below="@+id/qtyEt"
+            android:id="@+id/linearbutton"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
         <Button
-            android:layout_below="@+id/qtyTI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            app:drawableStartCompat="@drawable/ic_quantity_limits_24"
+            android:layout_weight="1"
+            style="@style/modifiedEditText"
             android:id="@+id/selImg"
-            android:padding="5dp"
+            android:drawablePadding="10dp"
+            android:padding="12dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_background"
-            android:text="Select Image"
-            />
+            android:text="Select Image" />
 
         <Button
-            android:layout_toRightOf="@+id/selImg"
-            android:layout_below="@id/qtyTI"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:fontFamily="@font/roboto"
+            android:layout_weight="1"
+            style="@style/modifiedEditText"
             android:id="@+id/addImg"
-            android:padding="5dp"
+            android:padding="12dp"
             android:layout_margin="5dp"
             android:background="@drawable/button_background"
             android:text="Add Image" />
+
+        </LinearLayout>
+
+
         <TextView
+            android:fontFamily="@font/roboto"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/select2"
             android:layout_marginLeft="5dp"
             android:paddingLeft="5dp"
             android:text="Please Select 2 Images Only"
-            android:layout_below="@id/selImg"/>
+            android:layout_below="@id/linearbutton"/>
 
         <GridView
             android:padding="5dp"

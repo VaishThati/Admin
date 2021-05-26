@@ -118,7 +118,6 @@ public class AddImages extends AppCompatActivity {
             }
         });
 
-        size = findViewById(R.id.sizeEt);
         quantity = findViewById(R.id.qtyEt);
 
 //        newmaps.put("SizeId", size.getText().toString());
@@ -194,7 +193,7 @@ public class AddImages extends AppCompatActivity {
                 }
                 else {
                     try {
-                        obj.put("SizeId", Integer.parseInt(size.getText().toString()));
+                        //obj.put("SizeId", Integer.parseInt(size.getText().toString()));
                         obj.put("Qty", Integer.parseInt(quantity.getText().toString()));
                         Log.e("sizeidandqty", String.valueOf(obj));
                     } catch (JSONException e) {

@@ -9,6 +9,8 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -20,6 +22,7 @@ import com.example.adminapp.R;
 import com.example.adminapp.filsort.Item;
 import com.example.adminapp.productgetset.Example;
 import com.example.adminapp.productgetset.Vendor;
+import com.loopj.android.http.LogHandler;
 import com.squareup.picasso.Picasso;
 
 import java.io.IOException;
@@ -27,20 +30,18 @@ import java.io.InputStream;
 import java.net.HttpURLConnection;
 import java.net.URL;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 
-public class NewPrdAdp extends RecyclerView.Adapter<NewPrdAdp.ViewHolder> {
+public class NewPrdAdp extends RecyclerView.Adapter<NewPrdAdp.ViewHolder> implements Filterable {
 
     private ArrayList<Example> arrayData;
     private Activity activity;
     Bitmap myBitmap;
+    private List<Example> exampleListFull;
+    private List<Example> exampleList;
 
-//    public ProductAdapter(Activity activity, ArrayList<ListOfPrduct> arrayData){
-//        this.activity = activity;
-//        this.arrayData = arrayData;
-//    }
-
-    private Example[]    data;
+    private Example[] data;
     private Context context;
     List<Item> items;
     ArrayList<String> numbers = new ArrayList<>();
@@ -48,7 +49,16 @@ public class NewPrdAdp extends RecyclerView.Adapter<NewPrdAdp.ViewHolder> {
     public NewPrdAdp(Context context, Example[] data){
         this.context  = context;
         this.data = data;
+        this.exampleList = new ArrayList<Example>();
+        this.exampleList.addAll(Arrays.asList(data));
+       // exampleListFull = new ArrayList<>(this.exampleList);
+        this.exampleListFull = new ArrayList<Example>();
     }
+
+/*    NewPrdAdp(List<Example> exampleList) {
+        this.exampleList = exampleList;
+        exampleListFull = new ArrayList<>(exampleList);
+    }*/
 
     @NonNull
     @Override
@@ -61,19 +71,19 @@ public class NewPrdAdp extends RecyclerView.Adapter<NewPrdAdp.ViewHolder> {
     @Override
     public void onBindViewHolder(@NonNull NewPrdAdp.ViewHolder holder, int position) {
         Example mainn = data[position];
-
+        if (mainn!=null) {
 //        if (mainn.getImageUrls() !=  null) {
-        if (mainn.getPrdDesignRes() !=  null) {
-            holder.tv_android.setText(mainn.getDescription());
-            holder.tp.setText(Integer.toString(mainn.getTraderPrice()));
-            Log.e("categoryvalue", String.valueOf(mainn.getCategory().getCategoryValue()));
-            holder.cp.setText(Integer.toString(mainn.getCustomerPrice()));
-            holder.byvendor.setText(String.valueOf(mainn.getVendor().getVendorName()));
-            for (int i=0; i<mainn.getImageUrls().size();i++){
-                Log.e("imgurl", mainn.getImageUrls().get(i).getUrl());
-                Picasso.with(context).load(mainn.getPrdDesignRes().get(0).getImageUrls().get(0).getUrl()).resize(240, 120).into(holder.img_android);
-            }
-            //Picasso.with(context).load(mainn.getImageUrls().get(0).getUrl()).resize(240, 120).into(holder.img_android);
+            if (mainn.getPrdDesignRes() != null) {
+                holder.tv_android.setText(mainn.getDescription());
+                holder.tp.setText(Integer.toString(mainn.getTraderPrice()));
+                Log.e("categoryvalue", String.valueOf(mainn.getCategory().getCategoryValue()));
+                holder.cp.setText(Integer.toString(mainn.getCustomerPrice()));
+                holder.byvendor.setText(String.valueOf(mainn.getVendor().getVendorName()));
+                for (int i = 0; i < mainn.getImageUrls().size(); i++) {
+                    Log.e("imgurl", mainn.getImageUrls().get(i).getUrl());
+                    Picasso.with(context).load(mainn.getPrdDesignRes().get(0).getImageUrls().get(0).getUrl()).resize(240, 120).into(holder.img_android);
+                }
+                //Picasso.with(context).load(mainn.getImageUrls().get(0).getUrl()).resize(240, 120).into(holder.img_android);
 
             /*
             holder.img_android.setOnClickListener(new View.OnClickListener() {
@@ -115,42 +125,41 @@ public class NewPrdAdp extends RecyclerView.Adapter<NewPrdAdp.ViewHolder> {
             */
 
 
-            holder.cardView.setOnClickListener(new View.OnClickListener() {
-                @Override
+                holder.cardView.setOnClickListener(new View.OnClickListener() {
+                    @Override
 
-                public void onClick(View v) {
-                    numbers.clear();
-                    String quantity = null;
-                    if (mainn.getPrdDesignRes().equals("[]")) {
-                        numbers.add("http://www.hdwallpaperspulse.com/wp-content/uploads/2017/12/14/lovely-view-natural-image.jpg");
-                        quantity = String.valueOf(0);
-                    }
-                    else if (mainn.getPrdDesignRes().size()>0){
-                        for (int i = 0; i < mainn.getPrdDesignRes().get(0).getImageUrls().size(); i++) {
-                            //  if(mainn.)
-                            numbers.add(mainn.getPrdDesignRes().get(0).getImageUrls().get(i).getUrl());
-                            quantity = String.valueOf(mainn.getPrdDesignRes().get(0).quantity);
+                    public void onClick(View v) {
+                        numbers.clear();
+                        String quantity = null;
+                        if (mainn.getPrdDesignRes().equals("[]")) {
+                            numbers.add("http://www.hdwallpaperspulse.com/wp-content/uploads/2017/12/14/lovely-view-natural-image.jpg");
+                            quantity = String.valueOf(0);
+                        } else if (mainn.getPrdDesignRes().size() > 0) {
+                            for (int i = 0; i < mainn.getPrdDesignRes().get(0).getImageUrls().size(); i++) {
+                                //  if(mainn.)
+                                numbers.add(mainn.getPrdDesignRes().get(0).getImageUrls().get(i).getUrl());
+                                quantity = String.valueOf(mainn.getPrdDesignRes().get(0).quantity);
+                            }
                         }
+                        Intent intent = new Intent(context, MultipleProduct.class);
+                        intent.putExtra("key", numbers);
+                        intent.putExtra("desc", mainn.getDescription());
+                        intent.putExtra("vendor", String.valueOf(mainn.getVendor().getVendorName()));
+                        intent.putExtra("catVal", String.valueOf(mainn.getCategory().getCategoryValue()));
+                        intent.putExtra("cp", Integer.toString(mainn.getCustomerPrice()));
+                        intent.putExtra("tp", Integer.toString(mainn.getTraderPrice()));
+                        intent.putExtra("fabric", String.valueOf(mainn.getFabric().getValue()));
+                        intent.putExtra("quantity", quantity);
+                        // Log.e("intent", String.valueOf(mainn.getImageUrls().get(0).getUrl()));
+                        context.startActivity(intent);
                     }
-                    Intent intent = new Intent(context, MultipleProduct.class);
-                    intent.putExtra("key", numbers);
-                    intent.putExtra("desc", mainn.getDescription());
-                    intent.putExtra("vendor", String.valueOf(mainn.getVendor().getVendorName()));
-                    intent.putExtra("catVal", String.valueOf(mainn.getCategory().getCategoryValue()));
-                    intent.putExtra("cp", Integer.toString(mainn.getCustomerPrice()));
-                    intent.putExtra("tp", Integer.toString(mainn.getTraderPrice()));
-                    intent.putExtra("fabric", String.valueOf(mainn.getFabric().getValue()));
-                    intent.putExtra("quantity", quantity);
-                   // Log.e("intent", String.valueOf(mainn.getImageUrls().get(0).getUrl()));
-                    context.startActivity(intent);
-                }
-            });
+                });
 
 
-        }
-        else {
-            holder.tp.setText("90890");
-            Picasso.with(context).load(R.drawable.ic_baseline_person_24).resize(240, 120).into(holder.img_android);
+            } else {
+                holder.tp.setText("90890");
+                Picasso.with(context).load(R.drawable.ic_baseline_person_24).resize(240, 120).into(holder.img_android);
+            }
         }
     }
 
@@ -188,4 +197,39 @@ public class NewPrdAdp extends RecyclerView.Adapter<NewPrdAdp.ViewHolder> {
             cardView = view.findViewById(R.id.itemCard);
         }
     }
+
+    @Override
+    public Filter getFilter() {
+        return exampleFilter;
+    }
+
+    private Filter exampleFilter = new Filter() {
+        @Override
+        protected FilterResults performFiltering(CharSequence constraint) {
+            List<Example> filteredList = new ArrayList<>();
+            Log.i("onetwothree", String.valueOf(exampleList));
+            if (constraint == null || constraint.length() == 0) {
+                filteredList.addAll(exampleList);
+                Log.e("filteredList", String.valueOf(filteredList));
+            } else {
+                String filterPattern = constraint.toString().toLowerCase().trim();
+                for (Example item : exampleList) {
+                    if (item.getDescription().toLowerCase().contains(filterPattern)) {
+                        filteredList.add(item);
+                    }
+                }
+            }
+            FilterResults results = new FilterResults();
+            results.values = filteredList;
+            Log.e("results", results.values.toString());
+            return results;
+        }
+        @Override
+        protected void publishResults(CharSequence constraint, FilterResults results) {
+            exampleList.clear();
+            exampleList.addAll((List) results.values);
+            Log.e("exampleList", String.valueOf(exampleList));
+            notifyDataSetChanged();
+        }
+    };
 }

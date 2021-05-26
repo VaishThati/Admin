@@ -74,7 +74,7 @@ public class AddProduct extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_add_product);
+        setContentView(R.layout.new_activity_add_product);
 
         ConfessName = new ArrayList<String>();
         ConfessIDArray = new ArrayList<Integer>();
@@ -184,6 +184,9 @@ public class AddProduct extends AppCompatActivity {
                 if (description.getText().toString().isEmpty()){
                     Toast.makeText(AddProduct.this, "Enter the description", Toast.LENGTH_SHORT).show();
                     description.requestFocus();
+                }
+                if (traderpr.getText().toString().isEmpty() || custpr.getText().toString().isEmpty()){
+                    Toast.makeText(AddProduct.this, "Calculate Selling Price first!", Toast.LENGTH_SHORT).show();
                 }
                 else {
                     addProduct();
@@ -456,25 +459,6 @@ public class AddProduct extends AppCompatActivity {
                 } else if (error instanceof AuthFailureError) {
                     message = "Cannot connect to Internet...Please check your connection!";
                 } else if (error instanceof ParseError) {
-                    //pd.dismiss();
-                    //this is chorgiri
-//                    String body;
-//                    if(error.networkResponse.data!=null) {
-//                        try {
-//                            body = new String(error.networkResponse.data,"UTF-8");
-//                            Log.e("body", body);
-//                            if (isNumeric(body)) {
-//                                message = "Product Addded";
-//                            }
-//                            else {
-//                                message = "The server could not be found. Please try again after some time!!";
-//                            }
-//                        } catch (UnsupportedEncodingException e) {
-//                            e.printStackTrace();
-//                        }
-//                    }
-                    //message = "Product Added!";
-                    //Toast.makeText(AddProduct.this, "Product Addded", Toast.LENGTH_SHORT).show();
                     message = "Parsing error! Please try again after some time!!";
                 } else if (error instanceof NoConnectionError) {
                     message = "Cannot connect to Internet...Please check your connection!";
